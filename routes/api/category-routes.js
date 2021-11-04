@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findAll(req.params.id, {
-      // JOIN with Products, using the Trip through table
       include: [{ model: Product, attridutes: ['id','product_name','price','stock','category_id']}]
     });
 
@@ -23,7 +22,6 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      // JOIN with Products, using the Trip through table
       include: [{ model: Product, attridutes: ['id','product_name','price','stock','category_id']}]
     });
 
@@ -51,7 +49,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   try {
-    const categoryData = await Traveller.update({
+    const categoryData = await Category.update({
       where: {
         id: req.params.id
       }
@@ -71,7 +69,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
   try {
-    const categoryData = await Traveller.destroy({
+    const categoryData = await Category.destroy({
       where: {
         id: req.params.id
       }
